@@ -1,0 +1,7 @@
+domain: kubeflow.io
+repo: github.com/kubeflow-pk/kfoptim
+resources:
+- group: optimization
+  kind: OptimJob
+  version: v1alpha1
+version: "2"

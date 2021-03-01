@@ -1,0 +1,7 @@
+apiVersion: optimization.kubeflow.io/v1alpha1
+kind: OptimJob
+metadata:
+  name: optimjob-sample
+spec:
+  # Add fields here
+  foo: bar
