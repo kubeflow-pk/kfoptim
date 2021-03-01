@@ -18,6 +18,10 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/util/validation/field"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
+
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -60,4 +64,21 @@ type OptimJobList struct {
 
 func init() {
 	SchemeBuilder.Register(&OptimJob{}, &OptimJobList{})
+}
+
+func (r *OptimJob) validateOptimJob() error {
+	var allErrs field.ErrorList
+	//if err := r.validateOptimJobName(); err != nil {
+	//	allErrs = append(allErrs, err)
+	//}
+	//if err := r.validateCronJobSpec(); err != nil {
+	//	allErrs = append(allErrs, err)
+	//}
+	if len(allErrs) == 0 {
+		return nil
+	}
+
+	return apierrors.NewInvalid(
+		schema.GroupKind{Group: "batch.tutorial.kubebuilder.io", Kind: "CronJob"},
+		r.Name, allErrs)
 }
